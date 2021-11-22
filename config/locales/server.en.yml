@@ -1,0 +1,12 @@
+en:
+  site_settings:
+    cdn_signed_urls_enabled: "Enable signed CDN URLs"
+    cdn_signed_urls_key: "Signing key to sign URLs with"
+    cdn_signed_urls_key_name: "Name of CDN URL signing key"
+
+  gcloud_cdn_signer:
+    errors:
+      missing_key_name: "You must set the CDN URL signing key name before enabling this setting."
+      missing_signing_key: "You must set the CDN URL signing key before enabling this setting."
+      cannot_disable: "You must disable signed CDN URLs before clearing this setting."
+      no_secure_media: "You must enable secure media before enabling this setting."

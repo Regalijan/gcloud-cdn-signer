@@ -1,0 +1,16 @@
+plugins:
+  cdn_signed_urls_enabled:
+    default: false
+    client: false
+    validator: EnableCDNURLSigningValidator
+
+  cdn_signed_urls_key:
+    client: false
+    secret: true
+    default: ''
+    validator: ResetSignedCDNURLsCreds
+
+  cdn_signed_urls_key_name:
+    client: false
+    default: ''
+    validator: ResetSignedCDNURLsCreds
