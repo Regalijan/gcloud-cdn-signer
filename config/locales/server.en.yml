@@ -3,6 +3,7 @@ en:
     cdn_signed_urls_enabled: "Enable signed CDN URLs"
     cdn_signed_urls_key: "Signing key to sign URLs with"
     cdn_signed_urls_key_name: "Name of CDN URL signing key"
+    cdn_signature_expiration_time: "How long a signed CDN URL should be valid for (between 15 and 86400 seconds)"
 
   gcloud_cdn_signer:
     errors:

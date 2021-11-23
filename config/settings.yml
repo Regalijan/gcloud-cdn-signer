@@ -14,3 +14,9 @@ plugins:
     client: false
     default: ''
     validator: ResetSignedCDNURLsCreds
+
+  cdn_signature_expiration_time:
+    client: false
+    default: 300
+    min: 15
+    max: 86400
