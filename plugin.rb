@@ -21,7 +21,7 @@ after_initialize do
     module DiscourseCDNSignedURLs    
       def presigned_get_url(url)
         signing_key = Base64.urlsafe_decode64 SiteSetting.cdn_signed_urls_key
-        unsigned_url = "#{SiteSetting.s3_cdn_url}/#{url}?Expires=#{Time.now.to_i + SiteSetting.cdn_signature_expiration_time.to_i}&KeyName=#{SiteSetting.cdn_signed_urls_key_name}"
+        unsigned_url = "#{SiteSetting.s3_cdn_url}/#{url}?Expires=#{Time.now.to_i + SiteSetting.cdn_signature_expiration_time}&KeyName=#{SiteSetting.cdn_signed_urls_key_name}"
         sig = OpenSSL::HMAC.digest "SHA1", signing_key, unsigned_url
         encoded_sig = Base64.urlsafe_encode64 sig
         "#{unsigned_url}&Signature=#{encoded_sig}"
