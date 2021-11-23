@@ -19,15 +19,9 @@ enabled_site_setting :secure_media
 after_initialize do
   if SiteSetting.cdn_signed_urls_enabled? && SiteSetting.secure_media? && !SiteSetting.s3_cdn_url.blank?
     module DiscourseCDNSignedURLs    
-      def presigned_get_url(
-        url,
-        force_download: false,
-        filename: false,
-        expires_in: S3Helper::DOWNLOAD_URL_EXPIRES_AFTER_SECONDS
-      )
-
+      def presigned_get_url(url)
         signing_key = Base64.urlsafe_decode64 SiteSetting.cdn_signed_urls_key
-        unsigned_url = "#{SiteSetting.s3_cdn_url}/#{url}?Expires=#{Time.now.to_i + expires_in}&KeyName=#{SiteSetting.cdn_signed_urls_key_name}"
+        unsigned_url = "#{SiteSetting.s3_cdn_url}/#{url}?Expires=#{Time.now.to_i + SiteSetting.cdn_signature_expiration_time.to_i}&KeyName=#{SiteSetting.cdn_signed_urls_key_name}"
         sig = OpenSSL::HMAC.digest "SHA1", signing_key, unsigned_url
         encoded_sig = Base64.urlsafe_encode64 sig
         "#{unsigned_url}&Signature=#{encoded_sig}"
