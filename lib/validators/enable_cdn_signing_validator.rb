@@ -12,12 +12,6 @@ class EnableCDNURLSigningValidator
   end
 
   def error_message
-    if SiteSetting.cdn_signed_urls_key.blank?
-      I18n.t('gcloud_cdn_signer.errors.missing_signing_key')
-    end
-
-    if SiteSetting.cdn_signed_urls_key_name.blank?
-      I18n.t('gcloud_cdn_signer.errors.missing_key_name')
-    end
+    I18n.t('gcloud_cdn_signer.errors.missing_settings')
   end
 end
