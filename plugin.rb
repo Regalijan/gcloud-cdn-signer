@@ -9,15 +9,13 @@
 require 'openssl'
 require 'base64'
 require_dependency 'file_store/s3_store'
-require_dependency 's3_helper'
 require_relative 'lib/validators/enable_cdn_signing_validator.rb'
 require_relative 'lib/validators/reset_cdn_signing_creds_validator.rb'
 
 enabled_site_setting :cdn_signed_urls_enabled
-enabled_site_setting :secure_media
 
 after_initialize do
-  if SiteSetting.cdn_signed_urls_enabled? && SiteSetting.secure_media? && !SiteSetting.s3_cdn_url.blank?
+  if SiteSetting.cdn_signed_urls_enabled? && !SiteSetting.s3_cdn_url.blank?
     module DiscourseCDNSignedURLs    
       def presigned_get_url(
         url,
