@@ -7,7 +7,6 @@ en:
 
   gcloud_cdn_signer:
     errors:
-      missing_key_name: "You must set the CDN URL signing key name before enabling this setting."
-      missing_signing_key: "You must set the CDN URL signing key before enabling this setting."
+      missing_settings: "You must set the CDN URL signing key and name before enabling this setting."
       cannot_disable: "You must disable signed CDN URLs before clearing this setting."
       no_secure_media: "You must enable secure media before enabling this setting."
