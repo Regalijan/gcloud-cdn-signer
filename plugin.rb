@@ -23,6 +23,17 @@ after_initialize do
         filename: false,
         expires_in: SiteSetting.cdn_signature_expiration_time
       )
+        
+        if force_download && filename
+          opts = {
+            expires_in: S3Helper::DOWNLOAD_URL_EXPIRES_AFTER_SECONDS,
+            response_content_disposition: ActionDispatch::Http::ContentDisposition.format(
+              disposition: "attachment", filename: filename
+            )
+          }
+          obj = object_from_path(url)
+          return obj.presigned_url(:get, opts)
+        end
 
         signing_key = Base64.urlsafe_decode64 SiteSetting.cdn_signed_urls_key
         unsigned_url = "#{SiteSetting.s3_cdn_url}/#{url}?Expires=#{Time.now.to_i + expires_in}&KeyName=#{SiteSetting.cdn_signed_urls_key_name}"
