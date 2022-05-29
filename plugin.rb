@@ -28,8 +28,16 @@ after_initialize do
       end
 
       if force_download && filename
+        expiration = 0
+
+        begin
+          expiration = S3Helper::DOWNLOAD_URL_EXPIRES_AFTER_SECONDS
+        rescue NameError # Discourse is at commit 641c4e0b7a82f5c4ca5bac9b983c306ec75d7c0a or later
+          expiration = SiteSetting.s3_presigned_get_url_expires_after_seconds
+        end
+
         opts = {
-          expires_in: S3Helper::DOWNLOAD_URL_EXPIRES_AFTER_SECONDS,
+          expires_in: expiration,
           response_content_disposition: ActionDispatch::Http::ContentDisposition.format(
             disposition: "attachment", filename: filename
           )
