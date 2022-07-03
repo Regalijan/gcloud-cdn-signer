@@ -14,4 +14,4 @@ Prerequisites:
 Steps:
 1. Install using the normal plugin installation steps.
 2. Set your key name and signing key.
-3. Reboot Discourse (no rebuild required).
+3. Tick the cdn_signed_urls_enabled setting.
