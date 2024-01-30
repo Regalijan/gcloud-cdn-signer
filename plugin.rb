@@ -4,7 +4,7 @@
 # about: Plugin to create signed CDN URLs for Google Cloud
 # version: 0.2
 # author: Wolftallemo
-# url: https://github.com/Wolftallemo/gcloud-cdn-signer
+# url: https://github.com/Regalijan/gcloud-cdn-signer
 
 require 'openssl'
 require 'base64'
