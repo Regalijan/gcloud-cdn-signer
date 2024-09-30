@@ -3,7 +3,7 @@
 # name: gcloud-cdn-signer
 # about: Plugin to create signed CDN URLs for Google Cloud
 # version: 0.2
-# author: Regalijan
+# authors: Regalijan
 # url: https://github.com/Regalijan/gcloud-cdn-signer
 
 require 'openssl'
